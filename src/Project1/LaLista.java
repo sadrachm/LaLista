@@ -454,7 +454,7 @@ public class LaLista extends JFrame {
 			        }
 			        myWriter.close();
 			        System.out.println("Successfully wrote to the file.");
-					Process p = Runtime.getRuntime().exec("python src/Project1/emailAttempt.py");
+					Process p = Runtime.getRuntime().exec("python src/Project1/SendEmail.py");
 			        System.out.println("Successfully sent the file.");
 			        
 			      } 
