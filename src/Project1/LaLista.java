@@ -51,7 +51,7 @@ public class LaLista extends JFrame {
 	private final JButton otherButton = new JButton("Otro\r\n");
 	private JTextField otherText;
 	private final JScrollPane scrollPane_1 = new JScrollPane();
-	private final JButton load = new JButton("Load");
+	private final JButton load = new JButton("Bajar");
 	
 	//launcher
 	public static void main(String[] args) {
@@ -60,7 +60,7 @@ public class LaLista extends JFrame {
 				try {
 					LaLista frame = new LaLista();
 					frame.setVisible(true);
-					frame.setTitle("This is Sadrach's");
+					frame.setTitle("LaLista");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -178,7 +178,7 @@ public class LaLista extends JFrame {
 		//ComboBox of categories details and actionListener to change list object being shown
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		comboBox.setBackground(new Color(255, 255, 255));
+		comboBox.setBackground(new Color(255, 250, 250));
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (comboBox.getSelectedItem().equals("Carnes"))
@@ -312,10 +312,11 @@ public class LaLista extends JFrame {
 		lblNewLabel.setBounds(22, 11, 303, 71);
 		contentPane.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Edwardian Script ITC", Font.PLAIN, 70));
+		comboBox_1.setBackground(new Color(255, 250, 250));
 		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		//ComboBox_1 details
-		comboBox_1.setBounds(472, 498, 83, 41);
+		comboBox_1.setBounds(489, 297, 83, 41);
 		contentPane.add(comboBox_1);
 		comboBox_1.addItem("");
 		comboBox_1.addItem("lb(s)");
@@ -326,7 +327,7 @@ public class LaLista extends JFrame {
 		//TextField for amount details
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField.setBounds(461, 570, 111, 41);
+		textField.setBounds(461, 245, 111, 41);
 		textField.setText("1");
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -341,7 +342,7 @@ public class LaLista extends JFrame {
 		scrollPane.setColumnHeaderView(lblNewLabel_1);
 		
 		//Save button which writes final List to a new text and updates the dates of last time produce was bought
-		JButton btnNewButton = new JButton("Send");
+		JButton btnNewButton = new JButton("Enviar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    try {
@@ -453,7 +454,7 @@ public class LaLista extends JFrame {
 			        }
 			        myWriter.close();
 			        System.out.println("Successfully wrote to the file.");
-					Process p = Runtime.getRuntime().exec("python C:/Users/sadra/ICS_45J/LaLista/src/Project1/emailAttempt.py");
+					Process p = Runtime.getRuntime().exec("python src/Project1/emailAttempt.py");
 			        System.out.println("Successfully sent the file.");
 			        
 			      } 
@@ -465,7 +466,7 @@ public class LaLista extends JFrame {
 		});
 		btnNewButton.setBackground(new Color(255, 250, 250));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 39));
-		btnNewButton.setBounds(22, 127, 163, 56);
+		btnNewButton.setBounds(22, 131, 185, 49);
 		contentPane.add(btnNewButton);
 		
 		//Other button which processes otherText to go to the final list
@@ -490,7 +491,8 @@ public class LaLista extends JFrame {
 		contentPane.add(otherText);
 		otherText.setColumns(10);
 		
-		JButton save = new JButton("Save");
+		JButton save = new JButton("Guardar");
+		save.setBackground(new Color(255, 250, 250));
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -509,8 +511,9 @@ public class LaLista extends JFrame {
 			}
 		});
 		save.setFont(new Font("Tahoma", Font.PLAIN, 39));
-		save.setBounds(225, 127, 163, 56);
+		save.setBounds(217, 131, 177, 49);
 		contentPane.add(save);
+		load.setBackground(new Color(255, 250, 250));
 		load.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -535,7 +538,7 @@ public class LaLista extends JFrame {
 			}
 		});
 		load.setFont(new Font("Tahoma", Font.PLAIN, 39));
-		load.setBounds(410, 127, 141, 56);
+		load.setBounds(414, 131, 141, 49);
 		
 		contentPane.add(load);
 		
