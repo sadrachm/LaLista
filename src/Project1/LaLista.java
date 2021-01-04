@@ -2,6 +2,7 @@ package Project1;
 
 import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;  // Import the IOException class to handle errors
+import java.io.InputStreamReader;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
@@ -453,8 +455,28 @@ public class LaLista extends JFrame {
 			        	myWriter.write(addLater.get(a).getName() + " ~ " + addLater.get(a).getDate() + "\n");
 			        }
 			        myWriter.close();
+			        String check = "Fail";
 			        System.out.println("Successfully wrote to the file.");
-					Process p = Runtime.getRuntime().exec("python src/Project1/SendEmail.py");
+			        int count2 = 0;
+			        while (check.equals("Fail")) {
+			        	if (count2 != 0) {System.out.println("Invalid Email and Password combination\nTry Again\n");}
+	
+				        Scanner in = new Scanner(System.in);
+	
+				        System.out.println("Enter your gmail: ");
+				        String email = in.next();
+				        System.out.println("Enter your password: ");
+				        String pass = in.next();
+				        System.out.println("Enter your recipient's email: ");
+				        String email2 = in.next();
+				        
+				        
+				        Process p = Runtime.getRuntime().exec("python src/Project1/SendEmail.py" + " " + email + " " + pass + " " + email2);
+	
+						BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream())); 
+						check = output.readLine();
+						count2++;
+			        }
 			        System.out.println("Successfully sent the file.");
 			        
 			      } 
