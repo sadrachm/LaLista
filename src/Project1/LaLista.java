@@ -519,10 +519,8 @@ public class LaLista extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 			        FileWriter myWriter = new FileWriter("FinalList.txt");
-			        int count = 0;
 			        for (Food x : finalListObject) {
 			        	myWriter.write(x.getName() + " ~  " + x.getDate() + "\n");
-			        	count++;
 			        }
 			        myWriter.close();
 				}
