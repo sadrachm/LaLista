@@ -1,14 +1,14 @@
 Cebolla ~ 
-Ajo ~ 02/01/2021
+Ajo ~ 05/01/2021
 Cilantro ~ 
 Jitomate ~ 
 Jitomate en Lata (Puree) ~ 
-Jitomate en Lata (Diced) ~ 02/01/2021
-Platano ~ 02/01/2021
+Jitomate en Lata (Diced) ~ 05/01/2021
+Platano ~ 05/01/2021
 Papa ~ 
 Zanahoria ~ 
 Apio ~ 
-Elote ~ 02/01/2021
+Elote ~ 05/01/2021
 Elote en bolsa ~ 
 Verduras en bolsa ~ 
 Lechuga ~ 
@@ -16,5 +16,5 @@ Naranjas ~
 Melon ~ 
 Sandia ~ 
 Manzana Roja ~ 
-Manzana Verde ~ 
+Manzana Verde ~ 05/01/2021
 Manzana Gala ~ 

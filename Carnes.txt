@@ -1,7 +1,7 @@
-Pollo Entero ~ 02/01/2021
+Pollo Entero ~ 05/01/2021
 Piernas de Pollo ~ 
 Pechugas de Pollo ~ 03/01/2021
-Carne Molido ~ 02/01/2021
+Carne Molido ~ 05/01/2021
 T-Bone Steak ~ 03/01/2021
 New York Steak ~ 03/01/2021
 Arrachera ~ 
@@ -10,4 +10,4 @@ Sirloin ~
 Ribeye ~ 03/01/2021
 Atun ~ 
 Salmon ~ 03/01/2021
-Huevo ~ 02/01/2021
+Huevo ~ 05/01/2021
