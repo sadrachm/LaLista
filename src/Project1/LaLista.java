@@ -7,11 +7,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
 import javax.swing.JLabel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -23,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JScrollPane;
@@ -54,6 +59,7 @@ public class LaLista extends JFrame {
 	private JTextField otherText;
 	private final JScrollPane scrollPane_1 = new JScrollPane();
 	private final JButton load = new JButton("Bajar");
+	JFrame inputs = new JFrame("Sending");
 	
 	//launcher
 	public static void main(String[] args) {
@@ -161,13 +167,97 @@ public class LaLista extends JFrame {
 		
 	}
 
+	public void popup()
+	{
+		//x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		inputs.setBounds(100, 100, 344, 360);
+		JPanel contentPane1 = new JPanel();
+		contentPane1.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane1);
+		contentPane1.setLayout(null);
+		
+		JTextField email = new JTextField();
+		email.setBounds(10, 27, 308, 36);
+		contentPane1.add(email);
+		email.setColumns(10);
+		email.setText("@gmail.com");
+		
+		JTextField password = new JTextField();
+		password.setColumns(10);
+		password.setBounds(10, 89, 308, 36);
+		contentPane1.add(password);
+		
+		JTextField recipient = new JTextField();
+		recipient.setColumns(10);
+		recipient.setBounds(10, 152, 308, 36);
+		contentPane1.add(recipient);
+		recipient.setText("@gmail.com");
+		
+		JButton sendEmail = new JButton("Send");
+		sendEmail.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		sendEmail.setBounds(57, 199, 182, 36);
+		contentPane1.add(sendEmail);
+		
+		JLabel lblNewLabel = new JLabel("Your Email: ");
+		lblNewLabel.setBounds(10, 2, 112, 26);
+		contentPane1.add(lblNewLabel);
+		
+		JLabel lblRecipientEmail = new JLabel("Recipient's Email: ");
+		lblRecipientEmail.setBounds(10, 126, 112, 26);
+		contentPane1.add(lblRecipientEmail);
+		
+		JLabel lblPassword = new JLabel("Password: ");
+		lblPassword.setBounds(10, 64, 112, 26);
+		contentPane1.add(lblPassword);
+		
+		JTextField message = new JTextField();
+		message.setBounds(10, 246, 308, 64);
+		message.setColumns(10);
+		message.setEditable(false);
+		
+		contentPane1.add(message);
+		inputs.add(contentPane1);
+		
+
+		sendEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (recipient.getText().isBlank() || email.getText().isBlank()||password.getText().isBlank()) {
+					message.setText("Invalid Inputs. Try Again.");
+				}
+				else 
+				{
+					try 
+					{
+						String check = "False";
+				        Process p = Runtime.getRuntime().exec("python src/Project1/SendEmail.py" + " "+ email.getText() + " " + password.getText() + " " + recipient.getText());
+						BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream())); 
+						check = output.readLine();
+						System.out.println(check);
+						if (check.equals("Success")) {
+							message.setText("Successful.");
+							TimeUnit.SECONDS.sleep(1);
+							inputs.setVisible(false);
+						}
+						else
+						{
+							message.setText("Invalid Inputs. Try Again.");							
+						}
+			       }
+			       catch (IOException | InterruptedException a)
+			       {
+			    	   System.out.println("There was an error");
+			       }
+				} 
+		}
+		});
+	}
 	//Main Function
 	public LaLista() {
 		//Read text documents (Categories of foods) and create lists for each one
 		dataStructures();
-		
+		popup();
 		//Frame details
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 500, 1034, 884);
 		
 		//General panel details
@@ -345,6 +435,8 @@ public class LaLista extends JFrame {
 		
 		//Save button which writes final List to a new text and updates the dates of last time produce was bought
 		JButton btnNewButton = new JButton("Enviar");
+
+
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    try {
@@ -455,28 +547,7 @@ public class LaLista extends JFrame {
 			        	myWriter.write(addLater.get(a).getName() + " ~ " + addLater.get(a).getDate() + "\n");
 			        }
 			        myWriter.close();
-			        String check = "Fail";
 			        System.out.println("Successfully wrote to the file.");
-			        int count2 = 0;
-			        while (check.equals("Fail")) {
-			        	if (count2 != 0) {System.out.println("Invalid Email and Password combination\nTry Again\n");}
-	
-				        Scanner in = new Scanner(System.in);
-	
-				        System.out.println("Enter your gmail: ");
-				        String email = in.next();
-				        System.out.println("Enter your password: ");
-				        String pass = in.next();
-				        System.out.println("Enter your recipient's email: ");
-				        String email2 = in.next();
-				        
-				        
-				        Process p = Runtime.getRuntime().exec("python src/Project1/SendEmail.py" + " " + email + " " + pass + " " + email2);
-	
-						BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream())); 
-						check = output.readLine();
-						count2++;
-			        }
 			        System.out.println("Successfully sent the file.");
 			        
 			      } 
@@ -484,7 +555,10 @@ public class LaLista extends JFrame {
 			        System.out.println("An error occurred.");
 			        x.printStackTrace();
 			      }
+			
+			    inputs.setVisible(true);
 			}
+			
 		});
 		btnNewButton.setBackground(new Color(255, 250, 250));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 39));
